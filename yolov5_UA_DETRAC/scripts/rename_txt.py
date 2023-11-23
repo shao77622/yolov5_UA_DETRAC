@@ -8,17 +8,21 @@ import shutil
 import re
 import sys
 
-FLAG = 0
+FLAG = 1
 if FLAG == 1:
 
     ##train
-    src_dir = "/home/lj/zzg/fenghuo-zzg/DETRAC-dataset/Annotations/0510/scripts/train_detrac_txt" #image
-    dst_dir = "/home/lj/zzg/fenghuo-zzg/DETRAC-dataset/Annotations/0510/scripts/train_txt_select"
+    src_dir = "/Users/shaoben/Documents/dataset/DETRAC/train_detrac_txt" #image
+    dst_dir = "/Users/shaoben/Documents/dataset/DETRAC/train_detrac/labels"
+
+    img_dir = os.listdir("/Users/shaoben/Documents/dataset/DETRAC/train_detrac/images") #image
 
 else:
     ##test
-    src_dir = "/home/lj/zzg/fenghuo-zzg/DETRAC-dataset/Annotations/0510/scripts/test_detrac_txt" #image
-    dst_dir = "/home/lj/zzg/fenghuo-zzg/DETRAC-dataset/Annotations/0510/scripts/test_txt_select"
+    src_dir = "/Users/shaoben/Documents/dataset/DETRAC/test_detrac_txt" #image
+    dst_dir = "/Users/shaoben/Documents/dataset/DETRAC/val_detrac/labels"
+
+    img_dir = os.listdir("/Users/shaoben/Documents/dataset/DETRAC/val_detrac/images") #image
 
 def mkdirs(d):
     if not osp.exists(d):
@@ -30,6 +34,8 @@ seqs = [s for s in os.listdir(src_dir)]
 
 for seq in seqs: 
     path = osp.join(src_dir, seq)
+    if path .endswith('.DS_Store'):
+        continue
     # print(path)
     fileList = os.listdir(path)  
     os.chdir(path)  
@@ -45,10 +51,12 @@ for seq in seqs:
     print("after rename：" + str(os.listdir(path))) 
 
 print("step1 finished!-----")
-
+'''
 j = 0
 for seq in seqs: 
     path = osp.join(src_dir, seq)
+    if path .endswith('.DS_Store'):
+        continue
 
     for root, dirs, files in os.walk(path):
         files = sorted(files)
@@ -62,4 +70,24 @@ for seq in seqs:
                     shutil.copy(file_path, new_file_path)
                 print(j)
 print("step2 finished!------")
+'''
+
+
+for seq in seqs:
+    path = osp.join(src_dir, seq)
+
+    for file in os.listdir(path):
+        if file.split(".")[0]+".jpg" in img_dir:
+            print(file)
+            file_path = osp.join(path, file)
+            new_file_path = osp.join(dst_dir, file)
+            shutil.copy(file_path, new_file_path)
+
+
+print("step3 finished!------")
+
+
+
+
+
 # print(str(os.listdir(dst_dir)))

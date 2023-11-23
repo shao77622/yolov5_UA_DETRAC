@@ -17,14 +17,14 @@ def mkdirs(d):
 FLAG = 0
 if FLAG == 1:
     ##train
-    seq_root = "/home/lj/zzg/fenghuo-zzg/DETRAC-dataset/Images/Insight-MVT_Annotation_Train/"#图片
-    xml_root = "/home/lj/zzg/fenghuo-zzg/DETRAC-dataset/Annotations/DETRAC-Train-Annotations-XML/" #原始xml标注
-    label_root = "train_detrac_txt/" #新生成的标签保存目录
+    seq_root = "/Users/shaoben/Documents/dataset/DETRAC/Insight-MVT_Annotation_Train/"#图片
+    xml_root = "/Users/shaoben/Documents/dataset/DETRAC/DETRAC-Train-Annotations-XML/" #原始xml标注
+    label_root = "/Users/shaoben/Documents/dataset/DETRAC/train_detrac_txt/" #新生成的标签保存目录
 else:
     ##test
-    seq_root = "/home/lj/zzg/fenghuo-zzg/DETRAC-dataset/Images/Insight-MVT_Annotation_Test/"#图片
-    xml_root = "/home/lj/zzg/fenghuo-zzg/DETRAC-dataset/Annotations/DETRAC-Test-Annotations-XML/DETRAC-Test-Annotations-XML/" #原始xml标注
-    label_root = "test_detrac_txt/" #新生成的标签保存目录
+    seq_root = "/Users/shaoben/Documents/dataset/DETRAC/Insight-MVT_Annotation_Test/"#图片
+    xml_root = "/Users/shaoben/Documents/dataset/DETRAC/DETRAC-Test-Annotations-XML/" #原始xml标注
+    label_root = "/Users/shaoben/Documents/dataset/DETRAC/test_detrac_txt/" #新生成的标签保存目录
 
 seqs = [s for s in os.listdir(seq_root)]
 
